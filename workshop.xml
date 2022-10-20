@@ -1,0 +1,12 @@
+<Mod
+name="The Sun Mod"
+description="
+it adds the sun (mod).
+
+[].
+"
+tags="gameplay"
+dont_upload_folders=".assets" 
+dont_upload_files=""
+>
+</Mod>
