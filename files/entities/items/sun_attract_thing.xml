@@ -106,17 +106,12 @@
 			deck_capacity="0">
 		</gun_config>
 	</AbilityComponent>
-
-	<!-- movement and gravity -->
 	<LuaComponent
-		_tags="enabled_in_world,enabled_in_hand"
+		_tags="enabled_in_hand"
 		script_source_file="mods/thesunmod/files/entities/items/sun_attract_lua.lua"
 		execute_every_n_frame="1"
 		>
 	</LuaComponent>
-
-	<!-- FX -->
-
 	<LightComponent
 		_tags="enabled_in_world,enabled_in_hand"
 		radius="96"
