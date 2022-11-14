@@ -10,6 +10,7 @@ local t_a = EntityGetInRadiusWithTag( x, y, radius, "thunderstone" )
 local t_e = EntityGetInRadiusWithTag( x, y, radius, "stonestone" )
 local t_p = EntityGetInRadiusWithTag( x, y, radius, "poopstone" )
 local t_g = EntityGetInRadiusWithTag( x, y, radius, "gourd" )
+local t_eye = EntityGetInRadiusWithTag( x, y, radius, "evil_eye")
 
 local w = (#t_w > 0)
 local f = (#t_f > 0)
@@ -17,6 +18,7 @@ local a = (#t_a > 0)
 local e = (#t_e > 0)
 local p = (#t_p > 0)
 local g = (#t_g > 0)
+local eye = (#t_eye > 0)
 
 local essences_list = ""
 local comp = EntityGetFirstComponent( entity_id, "VariableStorageComponent", "sunbaby_essences_list" )
@@ -115,10 +117,24 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
 			EntityKill( v )
 		end
     end
+
+	if eye then 
+		if ( string.find( essences_list, "eye" ) == nil ) then
+            EntitySetComponentsWithTagEnabled( entity_id, "eye", true )
+			ComponentSetValue2( comp2, "image_file", "mods/thesunmod/files/sprites/sun_small_gourd.png" )
+			essences_list = essences_list .. "eye,"
+			EntityLoad("data/entities/projectiles/deck/explosion_giga.xml", x, y)
+			GameScreenshake( 30, x, y )
+        end
+
+        for i,v in ipairs( t_eye ) do
+			EntityKill( v )
+		end
+	end
 	
 	local ohno = false
     local ohg = false
-	
+	local eyefound = false
 	if ( string.find( essences_list, "water" ) ~= nil ) then
 		found = found + 1
 	end
@@ -142,6 +158,10 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
     if ( string.find( essences_list, "gourd" ) ~= nil ) then
 		ohg = true
 	end
+
+	if ( string.find( essences_list, "eye" ) ~= nil ) then
+		eyefound = true
+	end
 	
 	if ( found > 0 ) then
 		EntitySetComponentsWithTagEnabled( entity_id, "sunbaby_stage_1", false )
@@ -159,6 +179,10 @@ if ( comp ~= nil ) and ( comp2 ~= nil ) then
 			AddFlagPersistent( "progress_darksun" )
         elseif ohg == true then
             local sun = EntityLoad("mods/thesunmod/files/entities/newsun_gourd.xml", x, y)
+            EntityAddTag(sun, "sun")
+			GamePrintImportant( "The Green Sun rises...", "" )
+		elseif eyefound == true then
+			local sun = EntityLoad("mods/thesunmod/files/entities/newsun_digging.xml", x, y)
             EntityAddTag(sun, "sun")
 			GamePrintImportant( "The Green Sun rises...", "" )
 		else
