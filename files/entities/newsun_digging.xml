@@ -40,7 +40,7 @@
 		offset_y="105"
 		emissive="1"
 		additive="1"
-		image_file="mods/thesunmod/files/sprites/gourdsun.png"
+		image_file="mods/thesunmod/files/sprites/diggingsun.png"
 		smooth_filtering="1"
 	></SpriteComponent>
 
@@ -53,7 +53,7 @@
 		_tags="enabled_in_world,enabled_in_hand"
 		kill_when_finished="0"
 		steps_per_frame="16"
-		to_material="smoke"
+		to_material="spark_red"
 		convert_entities="1"
 		clean_stains="0"
 		is_circle="1"
@@ -67,7 +67,7 @@
 		kill_when_finished="0"
 		from_material_tag="[alchemy]"
 		steps_per_frame="16"
-		to_material="smoke"
+		to_material="spark_red"
 		clean_stains="0"
 		is_circle="1"
 		radius="230" 
@@ -136,7 +136,7 @@
 	
 	<ParticleEmitterComponent 
 		_tags="enabled_in_world,enabled_in_hand"
-		emitted_material_name="spark_green"
+		emitted_material_name="spark_red"
 		fade_based_on_lifetime="1"
 		x_pos_offset_min="0"
 		x_pos_offset_max="0"
